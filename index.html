@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>校园拾光 - 校园动态分享平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+        }
+        .header h1 {
+            font-size: 32px;
+            color: #0066cc;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .header p {
+            font-size: 16px;
+            color: #666;
+        }
+        .login-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 450px;
+            margin: 50px auto;
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.12);
+        }
+        .login-box h3 {
+            font-size: 24px;
+            color: #0066cc;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 12px 0;
+            border: 1px solid #d1e7ff;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            background: #f8fcff;
+        }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .btn-primary {
+            background: #0066cc;
+            color: white;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .user-info {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+        }
+        .user-info span {
+            font-size: 16px;
+            color: #0066cc;
+            font-weight: 500;
+        }
+        .publish-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+        }
+        .publish-box h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+            border-left: 4px solid #0066cc;
+            padding-left: 12px;
+        }
+        .publish-textarea {
+            width: 100%;
+            height: 120px;
+            padding: 15px;
+            border: 1px solid #d1e7ff;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            resize: none;
+            line-height: 1.6;
+        }
+        .posts-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+        }
+        .posts-box h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 25px;
+            border-left: 4px solid #0066cc;
+            padding-left: 12px;
+        }
+        .post {
+            border-bottom: 1px solid #f0f0f0;
+            padding: 20px 0;
+        }
+        .post:last-child {
+            border-bottom: none;
+        }
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .post-user {
+            font-weight: 600;
+            color: #0066cc;
+            font-size: 16px;
+        }
+        .post-time {
+            font-size: 13px;
+            color: #999;
+        }
+        .post-content {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .comment-box {
+            background: #f8fcff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .comment {
+            font-size: 14px;
+            color: #555;
+            padding: 8px 0;
+            padding-left: 12px;
+            border-left: 2px solid #0066cc;
+            margin: 8px 0;
+        }
+        .comment-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #d1e7ff;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            margin-top: 10px;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>校园拾光</h1>
+            <p>记录校园点滴 · 分享青春美好</p>
+        </div>
+
+        <div class="login-box" id="loginBox">
+            <h3>账号登录</h3>
+            <input type="text" class="form-input" id="username" placeholder="请输入用户名">
+            <input type="password" class="form-input" id="password" placeholder="请输入密码">
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="login()">登录</button>
+                <button class="btn btn-secondary" onclick="register()">注册</button>
+            </div>
+        </div>
+
+        <div class="user-info hidden" id="userInfo">
+            <span>欢迎回来，<span id="currentUser"></span> 同学</span>
+            <button class="btn btn-secondary" onclick="logout()">退出登录</button>
+        </div>
+
+        <div class="publish-box hidden" id="publishBox">
+            <h3>发布校园动态</h3>
+            <textarea class="publish-textarea" id="postContent" placeholder="分享你的校园生活..."></textarea>
+            <div style="text-align: right; margin-top: 15px;">
+                <button class="btn btn-primary" onclick="publishPost()">发布动态</button>
+            </div>
+        </div>
+
+        <div class="posts-box">
+            <h3>校园动态广场</h3>
+            <div id="postsList">
+                <p style="text-align:center; color:#999; padding:40px 0;">暂无动态，快来发布第一条吧！</p>
+            </div>
+        </div>
+    </div>
+
+<script>
+let users = JSON.parse(localStorage.getItem('campusUsers')) || [];
+let posts = JSON.parse(localStorage.getItem('campusPosts')) || [];
+let currentUser = localStorage.getItem('currentCampusUser');
+
+window.onload = function () {
+    if (currentUs
